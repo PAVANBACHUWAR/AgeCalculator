@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewpoint" content="width=device-width"/>
+        <link rel="stylesheet" href="AgeCalculator.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Age Calculator</h1>
+            </header>
+            <div class="input">
+                <div class="Date">
+                    <h2>Date</h2>
+                    <input type="text" id='Date'placeholder="dd" required="true" minlength="1" maxlength="2"/>
+                </div>
+                <div class="Month">
+                    <h2>Month</h2>
+                    <input type="text" id='Month'placeholder="mm" required="true" minlength="1" maxlength="2"/>
+                </div>
+                <div class="Year">
+                    <h2>Year</h2>
+                    <input type="text" id='Year'placeholder="yyyy" required="true" minlength="4" maxlength="4"/>
+                </div>
+            </div>
+            <div class="Button">
+                <button onclick="CalculateAge()">Sumbit</button>
+            </div>
+            <div class="result">
+                <p id="Age"></p>
+            </div>
+        </div>
+        <script>
+            // 30-11-2022
+            // 29-10-1996
+            // 01-01-26
+            function CalculateAge(){
+                var d1=document.getElementById("Date").value;
+                console.log(d1);
+                var m1=document.getElementById("Month").value;
+                var y1=document.getElementById("Year").value;
+
+                var date= new Date();
+                var d2=date.getDate();
+                var m2=1+date.getMonth();
+                var y2=date.getFullYear();
+
+                console.log(Number.isNaN(d1));
+
+                var month=[31,28,31,30,31,30,31,31,30,31,30,31];
+                if(Number.isNaN(d1)==false||Number.isNaN(m1)==false||Number.isNaN(y1)==false){
+
+                    document.getElementById('Age').innerHTML='Enter correct details'
+                }
+                else{
+                if(d1>d2){
+                    d2=d2+month[m2-1];
+                    m2=m2-1;
+                }
+                if(m1>m2){
+                    m2=m2+12;
+                    y2=y2-1;
+                }
+
+                var d=d2-d1;
+                var m=m2-m1;
+                var y=y2-y1;
+
+                document.getElementById("Age").innerHTML='Your Age is '+y+' years '+m+' months '+d+' days.'
+            }
+        }
+        </script>
+    </body>
